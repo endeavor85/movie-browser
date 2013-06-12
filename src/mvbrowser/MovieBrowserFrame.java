@@ -39,12 +39,13 @@ import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+@SuppressWarnings("serial")
 public class MovieBrowserFrame extends JFrame
 {
 	protected JProgressBar	progressBar;
 
 	protected ImagePanel	coverImgPanel;
-	protected JList			movieList;
+	protected JList<MovieData>	movieList;
 
 	protected String		VLC_EXE			= "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe";
 	protected String[]		VID_EXTENSIONS	= new String[] { "avi", "m4v", "m2ts", "mp4" };
@@ -192,7 +193,8 @@ public class MovieBrowserFrame extends JFrame
 			{
 				progressFrame.dispose();
 
-				movieList = new JList(movieFolders.toArray());
+				MovieData[] movieDataArray = new MovieData[0];
+				movieList = new JList<MovieData>(movieFolders.toArray(movieDataArray));
 				movieList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				movieList.addListSelectionListener(new ListSelectionListener()
 				{
