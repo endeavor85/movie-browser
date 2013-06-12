@@ -1,0 +1,26 @@
+<project name="Movie Browser" default="build" basedir=".">
+
+	<target name="build">
+		<!-- deletes previously created jar -->
+		<delete file="MovieBrowser.jar" />
+
+		<copydir dest="bin/res" src="res">
+    		<include name="**.*"/>
+		</copydir>
+		
+		<!-- compile code and drop .class into "bin" directory -->
+		<javac srcdir="${basedir}" destdir="bin" debug="false" deprecation="on">
+		</javac>
+
+		<!-- create jar with the contents inside "bin" -->
+		<jar destfile="MovieBrowser.jar" basedir="bin" duplicate="preserve">
+			<manifest>
+				<attribute name="Implementation-Vendor" value="Travis Steel" />
+				<attribute name="Implementation-Title" value="Movie Browser" />
+				<attribute name="Implementation-Version" value="0.0.9" />
+				<!-- this tells which class should run when executing your jar -->
+				<attribute name="Main-class" value="mvbrowser.MovieBrowser" />
+			</manifest>
+		</jar>
+	</target>
+</project>
